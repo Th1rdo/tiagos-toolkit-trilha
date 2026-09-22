@@ -1,4 +1,6 @@
 {
   "TRILHA.Config.SairAntes": "Previous track leaves before the next one starts",
-  "TRILHA.Config.SairAntesHint": "In sequential or shuffle playlists, picking another track fades the current one out completely (the playlist's Fade) and only then starts the new one. For the new one to fade in, use The Sound of Silence's Fade in."
+  "TRILHA.Config.SairAntesHint": "In sequential or shuffle playlists, picking another track fades the current one out completely (the playlist's Fade) and only then starts the new one. For the new one to fade in, use The Sound of Silence's Fade in.",
+  "TRILHA.Config.Entrada": "Next track starts when the fade-out is at (%)",
+  "TRILHA.Config.EntradaHint": "How far into the fade-out the next track starts. 100 = only once the previous one is silent (leaves a gap). 75 = in the previous track's last moments, the tails touch. 0 = at the same time (crossfade)."
 }

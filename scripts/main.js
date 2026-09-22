@@ -7,8 +7,11 @@
  * a anterior a sair por inteiro e só depois a nova a entrar.
  *
  * Por isso: parar as que estão a tocar (o Foundry desvanece-as em todos os clientes,
- * com o `fade` da playlist), esperar esse tempo, e só então tocar a pedida. A entrada
- * usa o fade-in da playlist (no The Sound of Silence: «Fade in»).
+ * com o `fade` da playlist) e tocar a pedida quando a saída já vai no fim — 75% por
+ * defeito. Esperar a saída inteira deixava um buraco de silêncio (0.1.0): a nova só
+ * começava com a anterior já calada, e o fade-in ainda demorava a fazer-se ouvir.
+ * Assim as caudas tocam-se: a nova nasce por baixo do fim da anterior.
+ * A entrada usa o «Fade in» do The Sound of Silence (curva em S soa melhor que a logarítmica).
  *
  * Só o mestre decide; os jogadores recebem as duas mudanças pelo Foundry, em sincronia.
  */
@@ -19,6 +22,11 @@ Hooks.once("init", () => {
   game.settings.register(MODULE_ID, "sairAntes", {
     name: "TRILHA.Config.SairAntes", hint: "TRILHA.Config.SairAntesHint",
     scope: "world", config: true, type: Boolean, default: true
+  });
+  game.settings.register(MODULE_ID, "entrada", {
+    name: "TRILHA.Config.Entrada", hint: "TRILHA.Config.EntradaHint",
+    scope: "world", config: true, type: Number, default: 75,
+    range: { min: 0, max: 100, step: 5 }
   });
 });
 
@@ -38,7 +46,8 @@ Hooks.once("setup", () => {
     esperas.set(this.id, som.id);
     await this.updateEmbeddedDocuments("PlaylistSound",
       outras.map((s) => ({ _id: s.id, playing: false, pausedTime: null })));
-    await new Promise((r) => setTimeout(r, fade));
+    const entrada = Math.min(100, Math.max(0, game.settings.get(MODULE_ID, "entrada") ?? 75)) / 100;
+    await new Promise((r) => setTimeout(r, fade * entrada));
     // o mestre pode ter escolhido outra música enquanto esta esperava: vale a última
     if (esperas.get(this.id) !== som.id) return this;
     esperas.delete(this.id);
