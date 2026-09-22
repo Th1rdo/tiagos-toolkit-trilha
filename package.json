@@ -1,0 +1,2 @@
+{ "name": "tiagos-toolkit-trilha", "private": true, "type": "module",
+  "scripts": { "test": "node --check scripts/main.js && node -e \"JSON.parse(require('fs').readFileSync('module.json'));for(const f of ['lang/pt-BR.json','lang/en.json'])JSON.parse(require('fs').readFileSync(f))\"" } }

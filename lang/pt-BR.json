@@ -1,0 +1,4 @@
+{
+  "TRILHA.Config.SairAntes": "A música anterior sai antes de a nova entrar",
+  "TRILHA.Config.SairAntesHint": "Em playlists sequenciais ou aleatórias, escolher outra música faz a atual desvanecer por inteiro (o «Fade» da playlist) e só depois começa a nova. Para a nova entrar em fade, usa o «Fade in» do The Sound of Silence."
+}

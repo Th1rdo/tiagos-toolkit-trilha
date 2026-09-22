@@ -1,0 +1,4 @@
+{
+  "TRILHA.Config.SairAntes": "Previous track leaves before the next one starts",
+  "TRILHA.Config.SairAntesHint": "In sequential or shuffle playlists, picking another track fades the current one out completely (the playlist's Fade) and only then starts the new one. For the new one to fade in, use The Sound of Silence's Fade in."
+}
